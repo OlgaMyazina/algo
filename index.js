@@ -35,7 +35,29 @@ function selected(arr) {
   }
   return arr;
 }
-console.log(selected(arr));
+//console.log(selected(arr));
+
+function selectedNew(arr) {
+  //предположим, что массив из положительных чисел
+  let minValue, minIndex;
+  const length = arr.length;
+  for (let i = 0; i < length; i++) {
+    minValue = arr[i];
+    minIndex = i;
+    for (let j = i; j < arr.length; j++) {
+      //находим минимальный элемент
+      if (arr[j] < minValue) {
+        minValue = arr[j];
+        minIndex = j;
+      }
+    }
+    const temp = arr[i];
+    arr[i] = arr[minIndex];
+    arr[minIndex] = temp;
+  }
+  return arr;
+}
+console.log(selectedNew(arr));
 /*
 function getArr() {
   const arr = document.querySelector('#inputArr').split(',');
