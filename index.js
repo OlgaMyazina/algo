@@ -193,8 +193,29 @@ function preOrder(tree) {
   if (treeForLeftOrder) preOrder(treeForLeftOrder);
   let treeForRigthOrder = tree.getRigth();
   if (treeForRigthOrder) preOrder(treeForRigthOrder);
-  //выводим узлы дерева в консоль
 }
+console.log('preOrder');
 preOrder(tree);
 
-function inOrder(tree) {}
+function inOrder(tree) {
+  let treeForLeftOrder = tree.getLeft();
+  if (treeForLeftOrder) inOrder(treeForLeftOrder);
+  //выводим узлы дерева в консоль
+  console.log(tree.getValue());
+  let treeForRigthOrder = tree.getRigth();
+  if (treeForRigthOrder) inOrder(treeForRigthOrder);
+}
+console.log('postOrder');
+inOrder(tree);
+
+function postOrder(tree) {
+  let treeForLeftOrder = tree.getLeft();
+  if (treeForLeftOrder) postOrder(treeForLeftOrder);
+
+  let treeForRigthOrder = tree.getRigth();
+  if (treeForRigthOrder) postOrder(treeForRigthOrder);
+  //выводим узлы дерева в консоль
+  console.log(tree.getValue());
+}
+console.log('postOrder');
+postOrder(tree);
