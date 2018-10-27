@@ -118,8 +118,6 @@ function testBasket(strBacket) {
     return false;
   } else return true;
 }
-console.log(`test = false ${testBasket('({[слово})')}`);
-console.log(`test = true ${testBasket('({[слово]})')}`);
 
 function newTestBasket(strBacket) {
   const basketStek = [];
@@ -145,5 +143,58 @@ function newTestBasket(strBacket) {
   return !basketStek.length;
 }
 
-console.log(`newTest = false ${newTestBasket('({[слово})')}`);
-console.log(`newTest = true ${newTestBasket('({[слово]})')}`);
+class NodeTree {
+  constructor(value) {
+    this.value = value;
+  }
+  setLeft(node) {
+    this.left = node;
+  }
+  getLeft() {
+    return this.left;
+  }
+  setRigth(node) {
+    this.right = node;
+  }
+  getRigth() {
+    return this.right;
+  }
+  getValue() {
+    return this.value;
+  }
+}
+
+//Реализуем дерево:
+
+const tree = new NodeTree('F');
+tree.setLeft(new NodeTree('B'));
+tree.getLeft().setLeft(new NodeTree('A'));
+tree.getLeft().setRigth(new NodeTree('D'));
+tree
+  .getLeft()
+  .getRigth()
+  .setLeft(new NodeTree('C'));
+tree
+  .getLeft()
+  .getRigth()
+  .setRigth(new NodeTree('E'));
+tree.setRigth(new NodeTree('G'));
+tree.getRigth().setRigth(new NodeTree('I'));
+tree
+  .getRigth()
+  .getRigth()
+  .setLeft(new NodeTree('H'));
+
+//Pre-order - Обходим с вершины дерева слева до конца и далее
+function preOrder(tree) {
+  //выводим узлы дерева в консоль
+  console.log(tree.getValue());
+  let treeForLeftOrder = tree.getLeft();
+  if (treeForLeftOrder) preOrder(treeForLeftOrder);
+  let treeForRigthOrder = tree.getRigth();
+  if (treeForRigthOrder) preOrder(treeForRigthOrder);
+  //выводим узлы дерева в консоль
+}
+preOrder(tree);
+
+function inOrder(tree) {}
