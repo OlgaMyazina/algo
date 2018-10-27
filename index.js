@@ -1,7 +1,6 @@
 'use strict';
 let arr = [2, 5, 1, 4, 9, 2, 8];
-//const arr = getArr();
-console.log(arr);
+//console.log(arr);
 function bubbles(arr) {
   const lenght = arr.length;
   for (let i = 0; i < lenght; i++) {
@@ -35,10 +34,8 @@ function selected(arr) {
   }
   return arr;
 }
-//console.log(selected(arr));
 
 function selectedNew(arr) {
-  //предположим, что массив из положительных чисел
   let minValue, minIndex;
   const length = arr.length;
   for (let i = 0; i < length; i++) {
@@ -57,7 +54,73 @@ function selectedNew(arr) {
   }
   return arr;
 }
-console.log(selectedNew(arr));
+
+class NodeBasket {
+  constructor(data) {
+    this.data = data;
+  }
+  setHead(node) {
+    this.head = node;
+  }
+  getHead() {
+    return this.head;
+  }
+  setNext(node) {
+    this.next = node;
+  }
+  getNext() {
+    return this.next;
+  }
+  setPrev(node) {
+    this.prev = node;
+  }
+  getPrev() {
+    return this.prev;
+  }
+  getData() {
+    return this.data;
+  }
+}
+
+//проверка скоробок
+function testBasket(strBacket) {
+  //на вход строка скобок - разбиваем на символы
+  const basket = strBacket.split('');
+  const basketOpen = ['(', '[', '{', '<'];
+  const basketClose = [')', ']', '}', '>'];
+  const basketCloseMap = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+    '<': '>'
+  };
+  let headNode;
+  basket.forEach(element => {
+    if (basketOpen.includes(element)) {
+      const node = new NodeBasket(element);
+      node.setHead(node);
+      if (headNode) {
+        headNode.setNext(node);
+        node.setPrev(headNode);
+      }
+      headNode = node;
+    }
+    if (basketClose.includes(element)) {
+      const nodeData = headNode.getData();
+      if (basketCloseMap[nodeData] != element) {
+        return false;
+      }
+      const node = headNode.getPrev();
+      headNode = node;
+    }
+  });
+  if (headNode) {
+    return false;
+  } else return true;
+}
+console.log(`test = false ${testBasket('({[слово})')}`);
+console.log(`test = true ${testBasket('({[слово]})')}`);
+
 /*
 function getArr() {
   const arr = document.querySelector('#inputArr').split(',');
