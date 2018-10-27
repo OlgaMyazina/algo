@@ -1,5 +1,6 @@
 'use strict';
 const arr = [2, 5, 1, 4, 9, 2, 8];
+console.log(arr);
 function bubbles(arr) {
   const lenght = arr.length;
   for (let i = 0; i < lenght; i++) {
@@ -13,5 +14,5 @@ function bubbles(arr) {
   }
   return arr;
 }
-console.log(arr);
+
 console.log(bubbles(arr));
