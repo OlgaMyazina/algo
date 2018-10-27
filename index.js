@@ -19,26 +19,23 @@ function bubbles(arr) {
 function selected(arr) {
   //предположим, что массив из положительных чисел
   let minValue, minIndex;
-  const newArr = [];
   const length = arr.length;
   for (let i = 0; i < length; i++) {
-    minValue = arr[0];
-    minIndex = 0;
-    for (let j = 0; j < arr.length; j++) {
+    minValue = arr[i];
+    minIndex = i;
+    for (let j = i; j < arr.length; j++) {
       //находим минимальный элемент
       if (arr[j] < minValue) {
         minValue = arr[j];
         minIndex = j;
       }
     }
-    newArr[i] = minValue;
     arr.splice(minIndex, 1);
-    minIndex = i;
+    arr.unshift(minValue);
   }
-  return newArr;
+  return arr;
 }
 console.log(selected(arr));
-
 /*
 function getArr() {
   const arr = document.querySelector('#inputArr').split(',');
@@ -48,8 +45,9 @@ function setArr(array) {
   const outForArr = document.querySelector('#outputArr');
   outForArr.textContent = array.join(', ');
 }
-document.querySelector('button').addEventListener('click', () => {
+const btn = document.querySelector('#run');
+console.log(btn);
+btn.addEventListener('click', () => {
   console.log('В разработке');
 });
-
 */
