@@ -137,8 +137,8 @@ function newTestBasket(strBacket) {
     '>': '1'
   };
   basket.forEach(element => {
-    if (basketOpenMap.hasOwnProperty(element)) basketStek.push(element);
-    if (basketClose.hasOwnProperty(element)) {
+    if (basketOpenMap[element]) basketStek.push(element);
+    if (basketClose[element]) {
       if (element != basketStek.pop(element)) return false;
     }
   });
