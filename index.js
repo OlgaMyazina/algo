@@ -194,8 +194,8 @@ function preOrder(tree) {
   let treeForRigthOrder = tree.getRigth();
   if (treeForRigthOrder) preOrder(treeForRigthOrder);
 }
-console.log('preOrder');
-preOrder(tree);
+//console.log('preOrder');
+//preOrder(tree);
 
 function inOrder(tree) {
   let treeForLeftOrder = tree.getLeft();
@@ -205,8 +205,8 @@ function inOrder(tree) {
   let treeForRigthOrder = tree.getRigth();
   if (treeForRigthOrder) inOrder(treeForRigthOrder);
 }
-console.log('inOrder');
-inOrder(tree);
+//console.log('inOrder');
+//inOrder(tree);
 
 function postOrder(tree) {
   let treeForLeftOrder = tree.getLeft();
@@ -217,5 +217,20 @@ function postOrder(tree) {
   //выводим узлы дерева в консоль
   console.log(tree.getValue());
 }
-console.log('postOrder');
-postOrder(tree);
+//console.log('postOrder');
+//postOrder(tree);
+
+function stackTree(tree) {
+  //реализуем на массиве - очередь!:
+  const stackNodeTree = [];
+  stackNodeTree.push(tree);
+  while (stackNodeTree.length != 0) {
+    const node = stackNodeTree.shift();
+    console.log(node.getValue());
+    const treeForLeftOrder = node.getLeft();
+    if (treeForLeftOrder) stackNodeTree.push(treeForLeftOrder);
+    const treeForRigthOrder = node.getRigth();
+    if (treeForRigthOrder) stackNodeTree.push(treeForRigthOrder);
+  }
+}
+stackTree(tree);
