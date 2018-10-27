@@ -124,20 +124,22 @@ console.log(`test = true ${testBasket('({[слово]})')}`);
 function newTestBasket(strBacket) {
   const basketStek = [];
   const basket = strBacket.split('');
-  const basketOpen = ['(', '[', '{', '<'];
-  const basketClose = [')', ']', '}', '>'];
-  const basketCloseMap = {
+  const basketOpenMap = {
     '(': ')',
     '[': ']',
     '{': '}',
     '<': '>'
   };
+  const basketClose = {
+    ')': '1',
+    ']': '1',
+    '}': '1',
+    '>': '1'
+  };
   basket.forEach(element => {
-    let basketLastElem;
-    if (basketOpen.includes(element)) basketStek.push(element);
-    if (basketClose.includes(element)) {
-      basketLastElem = basketStek.shift(element);
-      if (basketCloseMap[basketLastElem] != element) return false;
+    if (basketOpenMap.hasOwnProperty(element)) basketStek.push(element);
+    if (basketClose.hasOwnProperty(element)) {
+      if (element != basketStek.pop(element)) return false;
     }
   });
   return !basketStek.length;
@@ -145,19 +147,3 @@ function newTestBasket(strBacket) {
 
 console.log(`newTest = false ${newTestBasket('({[слово})')}`);
 console.log(`newTest = true ${newTestBasket('({[слово]})')}`);
-
-/*
-function getArr() {
-  const arr = document.querySelector('#inputArr').split(',');
-  return arr;
-}
-function setArr(array) {
-  const outForArr = document.querySelector('#outputArr');
-  outForArr.textContent = array.join(', ');
-}
-const btn = document.querySelector('#run');
-console.log(btn);
-btn.addEventListener('click', () => {
-  console.log('В разработке');
-});
-*/
