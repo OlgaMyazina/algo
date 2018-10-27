@@ -121,6 +121,31 @@ function testBasket(strBacket) {
 console.log(`test = false ${testBasket('({[слово})')}`);
 console.log(`test = true ${testBasket('({[слово]})')}`);
 
+function newTestBasket(strBacket) {
+  const basketStek = [];
+  const basket = strBacket.split('');
+  const basketOpen = ['(', '[', '{', '<'];
+  const basketClose = [')', ']', '}', '>'];
+  const basketCloseMap = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+    '<': '>'
+  };
+  basket.forEach(element => {
+    let basketLastElem;
+    if (basketOpen.includes(element)) basketStek.push(element);
+    if (basketClose.includes(element)) {
+      basketLastElem = basketStek.shift(element);
+      if (basketCloseMap[basketLastElem] != element) return false;
+    }
+  });
+  return !basketStek.length;
+}
+
+console.log(`newTest = false ${newTestBasket('({[слово})')}`);
+console.log(`newTest = true ${newTestBasket('({[слово]})')}`);
+
 /*
 function getArr() {
   const arr = document.querySelector('#inputArr').split(',');
