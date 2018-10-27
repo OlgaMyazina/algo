@@ -205,7 +205,7 @@ function inOrder(tree) {
   let treeForRigthOrder = tree.getRigth();
   if (treeForRigthOrder) inOrder(treeForRigthOrder);
 }
-console.log('postOrder');
+console.log('inOrder');
 inOrder(tree);
 
 function postOrder(tree) {
