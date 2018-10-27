@@ -31,7 +31,7 @@ function selected(arr) {
       }
     }
     arr.splice(minIndex, 1);
-    arr.unshift(minValue);
+    arr.splice(i, 0, minValue);
   }
   return arr;
 }
